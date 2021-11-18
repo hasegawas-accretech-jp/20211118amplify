@@ -1,0 +1,14 @@
+{
+  "resourceName": "20211118amplify",
+  "tableName": "20211118amplify",
+  "partitionKey": {
+    "fieldName": "Artist",
+    "fieldType": "string"
+  },
+  "sortKey": {
+    "fieldName": "Title",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

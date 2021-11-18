@@ -1,25 +1,42 @@
-import logo from './logo.svg';
+import React from 'react';
+import Amplify from 'aws-amplify';
+import awsconfig from './aws-exports';
+import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
+
+import ApiGet from './ApiGet';
+import ApiPost from './ApiPost';
+import awsLogo from './aws-logo.png';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+Amplify.configure(awsconfig);
+
+class App extends React.Component {
+  render() {
+    return (
+      <div className="App">
+        <AmplifySignOut />
+        <header className="App-header">
+          <h1>AWS Serverless Handson</h1>
+          <p>Built using AWS Amplify</p>
+        </header>
+        <section className="App-section">
+          <h2>GET method</h2>
+          <ApiGet />
+        </section>
+        <section className="App-section">
+          <h2>POST method</h2>
+          <ApiPost />
+        </section>
+        <footer className="App-footer">
+          <p>Powered by
+            <a href="https://aws.amazon.com/" target="blank">
+              <img className="aws-logo" src={awsLogo} alt="AWS" />
+            </a>
+          </p>
+        </footer>
+      </div>
+    );
+  }
 }
 
-export default App;
+export default withAuthenticator(App);
